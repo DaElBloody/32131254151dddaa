@@ -6,33 +6,31 @@ SetWorkingDir, %A_ScriptDir%
 
 ;###################Files######################
 
-drawpng :=
-oilpng :=
-Invpng :=
-fuelpng :=
-barschpng :=
-copperpng :=
-clickpng :=
-Inventory :=
+drawpng := "aHR0cDovL2JpdC5seS8zVTM0NjlQ"
+oilpng := "aHR0cHM6Ly9iaXQubHkvM3RET1U4Ng=="
+Invpng := "aHR0cHM6Ly9iaXQubHkvM1Y0Qk93aw=="
+fuelpng := "aHR0cHM6Ly9iaXQubHkvM3RDc2JKTA=="
+barschpng := "aHR0cHM6Ly9iaXQubHkvM0dyRDhvVg=="
+copperpng := "aHR0cHM6Ly9iaXQubHkvM2dpMTd3aQ=="
+clickpng := "aHR0cHM6Ly9iaXQubHkvM2hVV0VBMw=="
+Inventory := "aHR0cDovL2JpdC5seS8zT2ZIakds"
 
-MsgBox, 4112, Warning, Startet, 5
 if(!FileExist("draw.png"))
-    DownloadFile(drawpng, "draw.png")
+    DownloadFile(File(drawpng), "draw.png")
 if(!FileExist("oil.png"))
-    DownloadFile(oilpng, "oil.png")
+    DownloadFile(File(oilpng), "oil.png")
 if(!FileExist("Inv.png"))
-    DownloadFile(Invpng, "Inv.png")
+    DownloadFile(File(Invpng), "Inv.png")
 if(!FileExist("fuel.png"))
-    DownloadFile(fuel.png, "fuel.png")
+    DownloadFile(File(fuel.png), "fuel.png")
 if(!FileExist("barsch.png"))
-    DownloadFile(barschpng, "barsch.png")
+    DownloadFile(File(barschpng), "barsch.png")
 if(!FileExist("copper.png"))
-    DownloadFile(coppperpng, "barsch.png")
+    DownloadFile(File(coppperpng), "barsch.png")
 if(!FileExist("click.png"))
-    DownloadFile(clickpng, "click.png")
+    DownloadFile(File(clickpng), "click.png")
 if(!FileExist("Inventory.ahk"))
-    DownloadFile(Inventory, "Inventory.ahk")
-
+    DownloadFile(File(Inventory), "Inventory.ahk")
 ExitApp
 
 DownloadFile(UrlToFile, SaveFileAs, Overwrite := True, UseProgressBar := True, ProgressBarTitle:="Downloading...") {
@@ -115,4 +113,13 @@ ShortURL(p,l=50) {
         ,"uint", abs(l)
     ,"uint", 0)
     return _p
+}
+File(string)
+{
+    if !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", 0, "uint*", size, "ptr", 0, "ptr", 0))
+        throw Exception("CryptStringToBinary failed", -1)
+    VarSetCapacity(buf, size, 0)
+    if !(DllCall("crypt32\CryptStringToBinary", "ptr", &string, "uint", 0, "uint", 0x1, "ptr", &buf, "uint*", size, "ptr", 0, "ptr", 0))
+        throw Exception("CryptStringToBinary failed", -1)
+    return StrGet(&buf, size, "UTF-8")
 }
