@@ -15,6 +15,8 @@ copperpng := "aHR0cHM6Ly9iaXQubHkvM2dpMTd3aQ=="
 clickpng := "aHR0cHM6Ly9iaXQubHkvM2hVV0VBMw=="
 Inventory := "aHR0cDovL2JpdC5seS8zT2ZIakds"
 
+
+
 if(!FileExist("draw.png"))
     DownloadFile(File(drawpng), "draw.png")
 if(!FileExist("oil.png"))
@@ -22,11 +24,11 @@ if(!FileExist("oil.png"))
 if(!FileExist("Inv.png"))
     DownloadFile(File(Invpng), "Inv.png")
 if(!FileExist("fuel.png"))
-    DownloadFile(File(fuel.png), "fuel.png")
+    DownloadFile(File(fuelpng), "fuel.png")
 if(!FileExist("barsch.png"))
     DownloadFile(File(barschpng), "barsch.png")
 if(!FileExist("copper.png"))
-    DownloadFile(File(coppperpng), "barsch.png")
+    DownloadFile(File(copperpng), "copper.png")
 if(!FileExist("click.png"))
     DownloadFile(File(clickpng), "click.png")
 if(!FileExist("Inventory.ahk"))
