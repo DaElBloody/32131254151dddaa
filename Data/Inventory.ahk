@@ -97,6 +97,11 @@ If (oil1 && !Oil2)
     Gui +LastFound +OwnDialogs +AlwaysOnTop
     MsgBox, 16, Warning, First put some "oil" in the trunk., 3
     PressESC()
+    if(oil)
+    {
+        pressE()
+        sleep 200
+    }
     ExitApp
 }
 If(oil1 && Oil2)
@@ -168,7 +173,7 @@ C_mousedrag(x1, y1, x2, y2, speed := 1) {
     sleep 500
 
     Click, Down
-    Sleep, 100
+    Sleep, 300
 
     loop % speed {
         mousemove (x1 + (ix * a_index)), (y1 + (iy * a_index))
@@ -176,5 +181,5 @@ C_mousedrag(x1, y1, x2, y2, speed := 1) {
     }
 
     Click, Up
-    Sleep, 100
+    Sleep, 200
 }
